@@ -233,4 +233,3 @@ def FBF(formula:list):
 ```
 ---
 
-GitHub: darevalog
