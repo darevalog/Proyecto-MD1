@@ -17,10 +17,12 @@ Este proyecto en Python permite tomar una fórmula lógica escrita en notación 
 
 ### `separar()`
 
-- Solicita una entrada en consola: debe estar delimitada por signos `$...$`.
-- Filtra los espacios y separa la fórmula en una lista de tokens.
-- Identifica los operadores lógicos en LaTeX y los normaliza.
-- Retorna la fórmula en forma de lista de símbolos.
+Esta función solicita una entrada del usuario (por consola), que debe estar delimitada por signos de dólar (`$...$`). Luego:
+
+1. Elimina los espacios y filtra los caracteres relevantes.
+2. Reconoce operadores como `\neg`, `\lor`, `\land`, `\rightarrow` y `\leftrightarrow` caracter por caracter, convirtiéndolos en una sola cadena.
+3. Verifica que los delimitadores `$` están correctamente ubicados.
+4. Devuelve la fórmula como una lista de símbolos procesados (tokens).
 
 ```python
 def separar():
@@ -63,9 +65,7 @@ def separar():
 ---
 
 ### `devolver(d: list)`
-
-- Recibe una fórmula como lista de cadenas.
-- Devuelve la expresión con formato LaTeX, incluyendo los delimitadores `$...$`.
+Recibe una fórmula estructurada (una lista de símbolos o subfórmulas) y la convierte nuevamente a formato LaTeX como cadena, añadiendo los signos $ al inicio y final. Esto permite imprimir el resultado de manera legible como si fuera una fórmula en un documento.
 
 ```python
 def devolver(d:list):
@@ -78,7 +78,7 @@ def devolver(d:list):
 
 ### `devolverS(d: list)`
 
-- Une los elementos de la lista en un solo string, separados por espacio, sin los signos `$`.
+Esta función toma una lista de elementos (por ejemplo, una subfórmula como ["p", "\land", "q"]) y los convierte en una sola cadena unida por espacios, como "p \land q". Es usada para construir subfórmulas agrupadas.
 
 ```python
 def devolverS(d:list):
@@ -94,10 +94,7 @@ def devolverS(d:list):
 ---
 
 ### `parentesis(formula: list)`
-
-- Busca subfórmulas encerradas entre paréntesis.
-- Llama recursivamente a `FBF` sobre ellas para asegurar que cada parte esté bien formada.
-- Reemplaza subexpresiones en la lista principal.
+Se encarga de detectar subexpresiones entre paréntesis y procesarlas de forma recursiva con la función FBF. Esto asegura que las expresiones internas también estén bien formadas antes de integrarse a la fórmula general. Usa una pila implícita (contador) para detectar el cierre de cada paréntesis.
 
 ```python
 def parentesis(formula:list):
@@ -131,10 +128,7 @@ def parentesis(formula:list):
 ---
 
 ### `negacion(formula: list)`
-
-- Detecta el operador `\neg`.
-- Agrupa el operando inmediatamente posterior dentro de paréntesis.
-- Modifica la lista para que esta negación sea tratada como una subfórmula completa.
+Revisa la fórmula buscando el operador \neg. Cuando lo encuentra, agrupa este operador con su operando (ya sea una variable o una subfórmula entre paréntesis). De este modo, la negación se interpreta correctamente como un solo bloque lógico.
 
 ```python
 def negacion(formula:list):
@@ -164,8 +158,7 @@ def negacion(formula:list):
 
 ### `o_y_Logico(formula: list)`
 
-- Identifica los conectores `\lor` (disyunción) y `\land` (conjunción).
-- Agrupa los operandos izquierdo y derecho, y los encierra en paréntesis.
+Identifica los conectores binarios \lor y \land, y agrupa el operando izquierdo y derecho con el operador dentro de un paréntesis. Esto garantiza que operaciones conjuntas se consideren como una sola subfórmula.
 
 ```python
 def o_y_Logico(formula:list):
@@ -193,8 +186,7 @@ def o_y_Logico(formula:list):
 
 ### `implicacion_equivalencia(formula: list)`
 
-- Procesa conectores `\rightarrow` (implicación) y `\leftrightarrow` (bicondicional).
-- Agrupa ambos lados de la relación con paréntesis.
+Procesa los operadores \rightarrow y \leftrightarrow, agrupando el operando izquierdo y derecho junto con el operador. Esto asegura que la implicación y equivalencia se entiendan como bloques bien definidos.
 
 ```python
 def implicacion_equivalencia(formula:list):
@@ -241,10 +233,4 @@ def FBF(formula:list):
 ```
 ---
 
-### 🧪 Ejemplo de uso
-
-```bash
-$ python main.py
-$ \neg p \rightarrow ( q \land r ) $
-$ (\neg p) \rightarrow (q \land r) $
-```
+GitHub: darevalog
