@@ -1,4 +1,4 @@
-# 🧠 Parser de Fórmulas Bien Formadas (FBF) en LaTeX
+# Parser de Fórmulas Bien Formadas (FBF) en LaTeX
 
 Este proyecto en Python permite tomar una fórmula lógica escrita en notación LaTeX y transformarla en su versión estructurada como **Fórmula Bien Formada** (FBF). Es útil para estudiantes de lógica matemática que deseen validar la sintaxis estructural de proposiciones complejas.
 
