@@ -233,3 +233,4 @@ def FBF(formula:list):
 ```
 ---
 
+> :shipit: Diego Alejandro Arévalo Guevara. July 17, 2025.
