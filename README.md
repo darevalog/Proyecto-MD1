@@ -36,6 +36,7 @@ def separar():
             pass
         else:
             s.append(i)
+    #print(n,len(s))
     if len(n)!=2 or n[0]!=0 or n[1]!=len(s):
        return (f"Esto no es una entrada latex:")
     s1=[]
@@ -45,21 +46,27 @@ def separar():
             if (s[i+1]+s[i+2]+s[i+3])=="neg":
               s1.append("\\neg")
               veri=i+3
+              pass
             elif (s[i+1]+s[i+2]+s[i+3])=="lor":
-              s1.append("\\lor")
+              s1.append("\lor")
               veri=i+3
+              pass
             elif (s[i+1]+s[i+2]+s[i+3]+s[i+4])=="land":
-              s1.append("\\land")
+              s1.append("\land")
               veri=i+4
-            elif (s[i+1:i+11])=="rightarrow":
+              pass
+            elif (s[i+1]+s[i+2]+s[i+3]+s[i+4]+s[i+5]+s[i+6]+s[i+7]+s[i+8]+s[i+9]+s[i+10])=="rightarrow":
               s1.append("\\rightarrow")
               veri=i+10
-            elif (s[i+1:i+15])=="leftrightarrow":
-              s1.append("\\leftrightarrow")
+              pass
+            elif (s[i+1]+s[i+2]+s[i+3]+s[i+4]+s[i+5]+s[i+6]+s[i+7]+s[i+8]+s[i+9]+s[i+10]+s[i+11]+s[i+12]+s[i+13]+s[i+14])=="leftrightarrow":
+              s1.append("\leftrightarrow")
               veri=i+14
+              pass
         else:
             if(veri<i or veri==0):
                 s1.append(s[i])
+    #print (s)
     return s1
 ```
 ---
