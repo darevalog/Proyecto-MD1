@@ -4,7 +4,7 @@ Este proyecto en Python permite tomar una fórmula lógica escrita en notación 
 
 ---
 ## 👤 Integrantes
-- Diego Alejandro Arevalo Guevara 
+- Diego Alejandro Arévalo Guevara 
 - Pedro Alejandro Castiblanco Castañeda
 - Nicolas Gomez Leon 
 - Diever Santiago Urbano Samboni 
